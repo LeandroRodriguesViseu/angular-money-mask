@@ -21,7 +21,9 @@
       var display, cents,precision=2;
 
       ngModelCtrl.$render = function () {
-        precision=parseInt(attrs.moneyMaskPrecision) || 2;
+        if (attrs.moneyMaskPrecision) {
+          precision=parseInt(attrs.moneyMaskPrecision) || 2;
+        }
         display = $filter('number')(cents / 100, precision);
 
         if (attrs.moneyMaskPrepend) {
