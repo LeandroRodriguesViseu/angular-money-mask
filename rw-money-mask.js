@@ -18,10 +18,11 @@
     return directive;
 
     function link(scope, element, attrs, ngModelCtrl) {
-      var display, cents;
+      var display, cents,precision=2;
 
       ngModelCtrl.$render = function () {
-        display = $filter('number')(cents / 100, 2);
+        precision=parseInt(attrs.moneyMaskPrecision) || 2;
+        display = $filter('number')(cents / 100, precision);
 
         if (attrs.moneyMaskPrepend) {
           display = attrs.moneyMaskPrepend + ' ' + display;
